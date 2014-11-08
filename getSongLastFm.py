@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 import youtube_dl
 
 API_KEY = '5b905641511ae41eee7001a79e88775f'
-SECRET = 'cf537d2466ff4f57cabdf762db1bf980'
 
 def get_song(artist):
     response = requests.get('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist={0}\

@@ -27,7 +27,7 @@ class Application(Frame):
         self.submit.grid(row=2, column=0, sticky=W)
 
         ##Create an area where text can be output to
-        self.text = Text(self, width=35, height=5, wrap=WORD)
+        self.text = Text(self, width=40, height=5, wrap=WORD)
         self.text.grid(row=3, column=0, columnspan=2, sticky=W)
 
     def download_video(self):
@@ -41,7 +41,7 @@ class Application(Frame):
 ##Create and format GUI Window
 root = Tk()
 root.title("Download Youtube Music Videos")
-root.geometry("250x150")
+root.geometry("300x150")
 app = Application(root)
 
 ##Function that keeps the window open
