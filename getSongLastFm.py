@@ -3,6 +3,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 import youtube_dl
+import time
 from download_mp3 import *
 
 API_KEY = '5b905641511ae41eee7001a79e88775f'
@@ -19,6 +20,7 @@ def get_song(artist):
         song = track['name']
         print(artist+ ' ' + song)
         get_mp3(artist + ' ' + song)
+        time.sleep(2)
 
 def get_mp3(artist_and_song_name):
     ids = get_tracks(artist_and_song_name,1)
@@ -26,7 +28,6 @@ def get_mp3(artist_and_song_name):
     download_url = str(api_response['track_link'])
     file_name = artist_and_song_name + " " + ".mp3"
     download_file(download_url,file_name)
-
 
 
 """
@@ -45,3 +46,11 @@ def download_link(url):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
 """
+
+"""song_list =['taylor swift Shake It Off','taylor swift We Are Never Ever Getting Back Together','taylor swift I Knew You Were Trouble','taylor swift 22','taylor swift Red','taylor swift Love Story','taylor swift You Belong with Me','taylor swift All Too Well','taylor swift Out of the Woods','taylor swift State of Grace']
+for song in song_list:
+    print(song)
+    get_mp3(song)
+"""
+
+get_song('taylor swift')
