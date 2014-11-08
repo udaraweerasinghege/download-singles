@@ -104,13 +104,17 @@ def display_results(search_string, page=1):
                 sys.exit(1)
             display_results(search_string, page)
 
-ids = (get_tracks('fifteen',1))
+
+ids = (get_tracks('taylor swift red',1))
 print(ids)
 api_response = call_pleer_api(ids[0])
 print(api_response)
-download_url = str(api_response['track_link'])
+z = (api_response['track_link'])
+print(z)
+#download_url = str(api_response['track_link'])
 artist = 'taylor swift'
 song = 'fifteen'
 file_name = artist + ' ' + song + '.mp3'
-download_file(download_url, file_name)
+##whatf going on??
+download_file('http://s9.pleer.com/0757f9bee167579b7527c2e6ca02b43d90b2a22f22b59e8ae156699ca55ec450d90ac7212149f39f1a68d1d66754827b14b55c2b/f3a1f47bce.mp3', file_name)
 
