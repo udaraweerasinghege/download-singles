@@ -2,7 +2,7 @@ __author__ = 'Pavitheran'
 __author__ = 'Udara'
 
 from tkinter import *
-from getSongs import *
+from getSongLastFm import *
 
 class Application(Frame):
     ## A GUI Application with a button.
@@ -32,7 +32,7 @@ class Application(Frame):
 
     def download_video(self):
         artist_name = self.name.get()
-        get_youtube_link(artist_name)
+        get_song(artist_name)
 
         ##Shows the user a message on successful completion
         self.text.delete(0.0, END)

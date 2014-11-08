@@ -36,4 +36,3 @@ def download_link(url):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
 
-get_youtube_link('50 Cent In Da Club')
