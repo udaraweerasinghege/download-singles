@@ -20,7 +20,7 @@ class Application(Frame):
 
         ##Create an area where user can type
         self.name = Entry(self)
-        self.name.grid(row=1, column=1, sticky=W)
+        self.name.grid(row=0, column=1, sticky=W)
 
         ##Create a button to call our method
         self.submit = Button(self, text="Submit", command=self.download_video)
