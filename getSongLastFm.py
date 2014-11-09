@@ -18,11 +18,21 @@ def get_song(artist, num_of_songs = 10):
     track_list = data['toptracks']['track']
     for track in track_list:
         song = track['name']
-        print(artist+ ' ' + song)
+
+        try:
+            print(artist + ' '+ song)
+        except:
+            print(artist + ' ' + 'Unknown Song')
+
         if '-' in song:
             song = song[:song.index('-')]
+        if '/' in song:
+            song = song[:song.index('/')]
+        if '\\' in song:
+            song = song[:song.index('\\')]
         get_mp3(artist + ' ' + song)
         time.sleep(1)
+    print('Finished downloading all ' + str(num_of_songs) + ' songs!')
 
 def get_mp3(artist_and_song_name):
     ids = get_tracks(artist_and_song_name)

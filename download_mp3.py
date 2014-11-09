@@ -106,19 +106,6 @@ def display_results(search_string, page=1):
             display_results(search_string, page)
 
 
-##call_pleer_api('46208Gfkb')
-"""
-ids = (get_tracks('taylor swift love story',1))
-print(ids)
-api_response = call_pleer_api(ids[0])
-print(api_response)
-z = (api_response['track_link'])
-#download_url = str(api_response['track_link'])
-artist = 'taylor swift'
-song = 'fifteen'
-file_name = artist + ' ' + song + '.mp3'
-##whatf going on??
-download_file(z, file_name)
-"""
+
 
 
