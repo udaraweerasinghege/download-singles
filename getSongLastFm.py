@@ -8,11 +8,10 @@ from download_mp3 import *
 
 API_KEY = '5b905641511ae41eee7001a79e88775f'
 
-def get_song(artist):
+def get_song(artist, num_of_songs = 10):
     response = requests.get('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist={0}\
-    &autocorrect=1&limit=10&api_key=5b905641511ae41eee7001a79e88775f&format=json'.format(artist))
+    &autocorrect=1&limit={1}&api_key=5b905641511ae41eee7001a79e88775f&format=json'.format(artist,str(num_of_songs)))
     data = response.json()
-
 
     track_list = data['toptracks']['track']
     for track in track_list:
@@ -26,7 +25,7 @@ def get_mp3(artist_and_song_name):
     api_response = call_pleer_api(ids[0])
     download_url = str(api_response['track_link'])
     file_name = artist_and_song_name + " " + ".mp3"
-    download_file(download_url,file_name)
+    download_file(download_url, file_name)
 
 
 """
@@ -52,4 +51,5 @@ for song in song_list:
     get_mp3(song)
 """
 
-get_song('taylor swift')
+
+
