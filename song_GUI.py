@@ -66,7 +66,7 @@ class Application(Frame):
 
         ##Shows the user a message on successful completion
 
-        self.text.insert(0.0, "Song successfully downloaded and placed in your C:\music directory.")
+        self.text.insert(0.0, "Song(s) successfully downloaded and placed in your C:\music directory.")
 
         self.name.delete(0, END)
 

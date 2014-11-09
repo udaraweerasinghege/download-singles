@@ -18,14 +18,14 @@ def call_pleer_api(song_id):
 
 
 def download_file(url, local_filename):
-    print('Downloading file')
+    print('Downloading file...')
     response = requests.get(url, stream=True)
     with open(local_filename, 'wb') as f:
         for chunk in response.iter_content(chunk_size=1024):
             if chunk:  # filter out keep-alive new chunks
                 f.write(chunk)
                 f.flush()
-    print('Finished downloading file')
+    print('Finished downloading file\n')
 
 
 def get_tracks(search_string):
@@ -42,17 +42,3 @@ def get_tracks(search_string):
     return song_ids
 
 
-
-"""
-ids = (get_tracks('taylor swift love story',1))
-print(ids)
-api_response = call_pleer_api(ids[0])
-print(api_response)
-z = (api_response['track_link'])
-#download_url = str(api_response['track_link'])
-artist = 'taylor swift'
-song = 'fifteen'
-file_name = artist + ' ' + song + '.mp3'
-##whatf going on??
-download_file(z, file_name)
-"""
