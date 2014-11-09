@@ -28,7 +28,7 @@ class Application(Frame):
         self.name.grid(row=0, column=1, sticky=W)
 
         ##Create a button linked to get_mp3
-        self.submit = Button(self, text="One Song", command= lambda: self.in_progress(True))
+        self.submit = Button(self, text="One Song", command= lambda: self.download_video(True))
         self.submit.grid(row=2, column=0, sticky=W)
 
         ##Creates button linked to get_song
@@ -49,8 +49,7 @@ class Application(Frame):
                               "Enter artist name + song name for just one song.\n"
                               "\nPlease be patient when downloading top ten songs, it may take up to a minute.")
 
-    def in_progress(self,flag):
-        self.download_video(flag)
+
 
     def download_video(self,flag):
         artist_name = self.name.get()
