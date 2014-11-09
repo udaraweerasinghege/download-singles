@@ -48,5 +48,4 @@ def download_link(url):
         ydl.download([url])
 
 
-get_song('eminem')
 
