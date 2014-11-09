@@ -1,17 +1,9 @@
 download-singles
 ================
-Downloads mp3s to C:/Music
-Insturctions :
-Run song_GUI.py:
-	To donwload a single song:
-		type in : <artist-name song-name> and press <One song>
-	examples: Taylor Swift Fifteen
-		     Eminem Mockingbird
-		     
-		
-	To download top 10 tracks by an artist:
-		type in : <artist-name> and press Top Ten
-	examples : Lady Gaga
-		
-		
-
+Instructions :</br>
+&nbsp;&nbsp;&nbsp;Run song_GUI.py:</br>
+&nbsp;&nbsp;&nbsp;To download a single song<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type in: <em>'artist-name song-name' </em>   &nbsp;without quotes and press the<em> One Song</em> button</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Examples: Taylor Swift Fifteen, Eminem Mockingbird</br>
+&nbsp;&nbsp;&nbsp;To download top 10 songs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type in: <em>'artist-name'</em> without quotes and press the <em>Top Ten</em> button
