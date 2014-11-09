@@ -22,6 +22,7 @@ def call_pleer_api(song_id):
     post_data = {'action': 'download', 'id': song_id}
     print(post_data)
     response = requests.post(PLEER_API_URL, params=post_data)
+    print(type(response))
     return response.json()
 
 
@@ -104,13 +105,20 @@ def display_results(search_string, page=1):
                 sys.exit(1)
             display_results(search_string, page)
 
-ids = (get_tracks('fifteen',1))
+
+##call_pleer_api('46208Gfkb')
+"""
+ids = (get_tracks('taylor swift love story',1))
 print(ids)
 api_response = call_pleer_api(ids[0])
 print(api_response)
-download_url = str(api_response['track_link'])
+z = (api_response['track_link'])
+#download_url = str(api_response['track_link'])
 artist = 'taylor swift'
 song = 'fifteen'
 file_name = artist + ' ' + song + '.mp3'
-download_file(download_url, file_name)
+##whatf going on??
+download_file(z, file_name)
+"""
+
 
