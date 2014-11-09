@@ -4,7 +4,8 @@ __author__ = 'Udara'
 from tkinter import *
 from getSongLastFm import *
 import os
-import time
+
+
 
 class Application(Frame):
     ## A GUI Application with a button.
@@ -15,17 +16,19 @@ class Application(Frame):
         self.grid()
         self.create_widgets()
 
+
+
     def create_widgets(self):
         ##Create a label
-        self.instruction = Label(self, text = "Enter Artist Name")
-        self.instruction.grid(row=0, column=0, columnspan=2, sticky=W)
+        self.instruction = Label(self, text = "Artist Name/Song")
+        self.instruction.grid(row=0, column=0, columnspan=3, sticky=W)
 
         ##Create an area where user can type
         self.name = Entry(self)
         self.name.grid(row=0, column=1, sticky=W)
 
         ##Create a button linked to get_mp3
-        self.submit = Button(self, text="One Song", command= lambda: self.download_video(True))
+        self.submit = Button(self, text="One Song", command= lambda: self.in_progress(True))
         self.submit.grid(row=2, column=0, sticky=W)
 
         ##Creates button linked to get_song
@@ -33,7 +36,7 @@ class Application(Frame):
         self.topten.grid(row=2, column=1, sticky=W)
 
         ##Create an area where text can be output to
-        self.text = Text(self, width=35, height=5, wrap=WORD)
+        self.text = Text(self, width=35, height=10, wrap=WORD)
         self.text.grid(row=3, column=0, columnspan=2, sticky=W)
 
         ##Creates music folder on C Drive for downloaded mp3s
@@ -42,9 +45,16 @@ class Application(Frame):
 
         os.chdir("C:\Music")
 
+        self.text.insert(0.0, "Enter an artist name only for their top ten songs.\n"
+                              "Enter artist name + song name for just one song.\n"
+                              "\nPlease be patient when downloading top ten songs, it may take up to a minute.")
+
+    def in_progress(self,flag):
+        self.download_video(flag)
 
     def download_video(self,flag):
         artist_name = self.name.get()
+        self.text.delete(0.0, END)
 
         if flag:
             ##Downloads specified song
@@ -55,16 +65,19 @@ class Application(Frame):
             get_song(artist_name)
 
         ##Shows the user a message on successful completion
-        self.text.delete(0.0, END)
-        self.text.insert(0.0, "Song successfully downloaded and placed in music directory.")
+
+        self.text.insert(0.0, "Song successfully downloaded and placed in your C:\music directory.")
 
         self.name.delete(0, END)
+
 
 
 ##Create and format GUI Window
 root = Tk()
 root.title("Download Songs")
-root.geometry("285x150")
+root.geometry("285x200")
+root.resizable(width=FALSE, height=FALSE)
+
 app = Application(root)
 
 ##Function that keeps the window open
