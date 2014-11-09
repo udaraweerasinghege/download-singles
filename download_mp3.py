@@ -10,7 +10,7 @@ __version__ = ['1.0']
 
 import sys
 import requests
-from tabulate import tabulate
+##from tabulate import tabulate
 from bs4 import BeautifulSoup
 
 PLEER_API_URL = 'http://pleer.com/site_api/files/get_url'

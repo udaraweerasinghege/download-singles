@@ -1,4 +1,5 @@
 __author__ = 'Udara'
+__author__ = 'Pavitheran'
 import requests
 import json
 from bs4 import BeautifulSoup
@@ -52,4 +53,4 @@ for song in song_list:
     get_mp3(song)
 """
 
-get_song('taylor swift')
+
