@@ -28,7 +28,6 @@ def get_mp3(artist_and_song_name):
     download_file(download_url, file_name)
 
 
-
 def get_music_vid(artist_and_song):
     source_code = requests.get('http://www.youtube.com/results?search_query=' + artist_and_song)
     plain = source_code.text
