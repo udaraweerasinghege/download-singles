@@ -47,7 +47,8 @@ class Application(Frame):
 
         self.text.insert(0.0, "Enter an artist name only for their top ten songs.\n"
                               "Enter artist name + song name for just one song.\n"
-                              "\nPlease be patient when downloading top ten songs, it may take up to a minute.")
+                              "\nPlease be patient when downloading top ten songs, it may take up to a minute.\n"
+                              "\nMade by Udara and Pavi")
 
 
 
@@ -74,7 +75,7 @@ class Application(Frame):
 ##Create and format GUI Window
 root = Tk()
 root.title("Download Songs")
-root.geometry("285x200")
+root.geometry("285x210")
 root.resizable(width=FALSE, height=FALSE)
 
 app = Application(root)
