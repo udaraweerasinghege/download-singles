@@ -35,13 +35,14 @@ class Application(Frame):
         self.text = Text(self, width=35, height=5, wrap=WORD)
         self.text.grid(row=3, column=0, columnspan=2, sticky=W)
 
+
+
+    def download_video(self,flag):
+        artist_name = self.name.get()
         ##Downloads songs into the music subfolder
         initial_dir = os.getcwd()
         final_dir = initial_dir + "\music"
         os.chdir(final_dir)
-
-    def download_video(self,flag):
-        artist_name = self.name.get()
 
         if flag:
             ##Downloads specified song
