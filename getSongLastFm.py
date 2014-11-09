@@ -28,8 +28,8 @@ def get_mp3(artist_and_song_name):
     download_file(download_url, file_name)
 
 
-"""
-def get_youtube_link(artist_and_song):
+
+def get_music_vid(artist_and_song):
     source_code = requests.get('http://www.youtube.com/results?search_query=' + artist_and_song)
     plain = source_code.text
     soup = BeautifulSoup(plain)
@@ -43,7 +43,7 @@ def download_link(url):
     ydl_opts = {}
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
-"""
+
 
 """song_list =['taylor swift Shake It Off','taylor swift We Are Never Ever Getting Back Together','taylor swift I Knew You Were Trouble','taylor swift 22','taylor swift Red','taylor swift Love Story','taylor swift You Belong with Me','taylor swift All Too Well','taylor swift Out of the Woods','taylor swift State of Grace']
 for song in song_list:
