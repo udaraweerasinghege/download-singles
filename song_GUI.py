@@ -32,7 +32,7 @@ class Application(Frame):
         self.submit.grid(row=2, column=0, sticky=W)
 
         ##Creates button linked to get_song
-        self.topten = Button(self, text="Top Ten", command= lambda: self.download_video(False))
+        self.topten = Button(self, text="Top Ten", command=lambda: self.download_video(False))
         self.topten.grid(row=2, column=1, sticky=W)
 
         ##Create an area where text can be output to

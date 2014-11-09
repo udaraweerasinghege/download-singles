@@ -5,7 +5,8 @@ import json
 from bs4 import BeautifulSoup
 import youtube_dl
 import time
-from download_mp3 import *
+#from download_mp3 import *
+from pleer_caler import *
 
 API_KEY = '5b905641511ae41eee7001a79e88775f'
 
@@ -18,14 +19,16 @@ def get_song(artist, num_of_songs = 10):
     for track in track_list:
         song = track['name']
         print(artist+ ' ' + song)
+        if '-' in song:
+            song = song[:song.index('-')]
         get_mp3(artist + ' ' + song)
-        time.sleep(2)
+        time.sleep(1)
 
 def get_mp3(artist_and_song_name):
-    ids = get_tracks(artist_and_song_name,1)
+    ids = get_tracks(artist_and_song_name)
     api_response = call_pleer_api(ids[0])
     download_url = str(api_response['track_link'])
-    file_name = artist_and_song_name + " " + ".mp3"
+    file_name = artist_and_song_name + ".mp3"
     download_file(download_url, file_name)
 
 
@@ -45,5 +48,5 @@ def download_link(url):
         ydl.download([url])
 
 
-
+get_song('eminem')
 
