@@ -50,6 +50,7 @@ def get_music_vid(artist_and_song):
        spf-link '})
     href = "https://www.youtube.com" + links[0].get('href')
     download_link(href)
+    print('Finished downloading the music video!')
 
 
 def download_link(url):
