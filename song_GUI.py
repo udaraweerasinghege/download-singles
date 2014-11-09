@@ -4,6 +4,7 @@ __author__ = 'Udara'
 from tkinter import *
 from getSongLastFm import *
 import os
+import time
 
 class Application(Frame):
     ## A GUI Application with a button.
@@ -35,14 +36,15 @@ class Application(Frame):
         self.text = Text(self, width=35, height=5, wrap=WORD)
         self.text.grid(row=3, column=0, columnspan=2, sticky=W)
 
+        ##Creates music folder on C Drive for downloaded mp3s
+        if not os.path.exists("C:\Music"):
+            os.makedirs("C:\Music")
+
+        os.chdir("C:\Music")
 
 
     def download_video(self,flag):
         artist_name = self.name.get()
-        ##Downloads songs into the music subfolder
-        initial_dir = os.getcwd()
-        final_dir = initial_dir + "\music"
-        os.chdir(final_dir)
 
         if flag:
             ##Downloads specified song
@@ -54,7 +56,7 @@ class Application(Frame):
 
         ##Shows the user a message on successful completion
         self.text.delete(0.0, END)
-        self.text.insert(0.0, "Song successfully downloaded and placed in music directory")
+        self.text.insert(0.0, "Song successfully downloaded and placed in music directory.")
 
         self.name.delete(0, END)
 
