@@ -7,6 +7,7 @@ import os
 
 
 
+
 class Application(Frame):
     ## A GUI Application with a button.
 
@@ -28,12 +29,16 @@ class Application(Frame):
         self.name.grid(row=0, column=1, sticky=W)
 
         ##Create a button linked to get_mp3
-        self.submit = Button(self, text="One Song", command= lambda: self.download_video(True))
+        self.submit = Button(self, text="One Song", command= lambda: self.download_video(0))
         self.submit.grid(row=2, column=0, sticky=W)
 
         ##Creates button linked to get_song
-        self.topten = Button(self, text="Top Ten", command=lambda: self.download_video(False))
+        self.topten = Button(self, text="Top Ten", command=lambda: self.download_video(1))
         self.topten.grid(row=2, column=1, sticky=W)
+
+        ##Creates button linked to get_music_vid
+        self.getvid = Button(self, text="Music Video", command= lambda: self.download_video(2))
+        self.getvid.grid(row=2, column=1, sticky=E)
 
         ##Create an area where text can be output to
         self.text = Text(self, width=35, height=10, wrap=WORD)
@@ -56,13 +61,17 @@ class Application(Frame):
         artist_name = self.name.get()
         self.text.delete(0.0, END)
 
-        if flag:
+        if (flag == 0):
             ##Downloads specified song
             get_mp3(artist_name)
 
-        else:
+        elif (flag == 1):
             ##Downloads top 10 songs
             get_song(artist_name)
+
+        else:
+            ##Downloads music video
+            get_music_vid(artist_name)
 
         ##Shows the user a message on successful completion
 
