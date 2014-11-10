@@ -9,6 +9,10 @@ import time
 from pleer_caler import *
 
 API_KEY = '5b905641511ae41eee7001a79e88775f'
+def clean_up(s):
+    punctuation = """!"'`@$%^&_-+={}|\\/,;:.-?)([]<>*#\n\t\r"""
+    result = s.strip(punctuation)
+    return result
 
 def get_song(artist, num_of_songs = 10):
     response = requests.get('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist={0}\
@@ -17,22 +21,23 @@ def get_song(artist, num_of_songs = 10):
 
     track_list = data['toptracks']['track']
     for track in track_list:
-        song = track['name']
-
-        try:
-            print(artist + ' '+ song)
-        except:
-            print(artist + ' ' + 'Unknown Song')
-
-        if '-' in song:
-            song = song[:song.index('-')]
-        if '/' in song:
-            song = song[:song.index('/')]
-        if '\\' in song:
-            song = song[:song.index('\\')]
+        song = clean_up(track['name'])
         get_mp3(artist + ' ' + song)
         time.sleep(1)
     print('Finished downloading all ' + str(num_of_songs) + ' songs!')
+
+def get_charts_top(num=10):
+    response = requests.get("http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&limit={}&\
+    api_key=5b905641511ae41eee7001a79e88775f&format=json".format(str(num)))
+    data = response.json()
+    songs = data['tracks']['track']
+    for song in songs:
+        song_name = song['name']
+        artist = song['artist']['name']
+        to_download = artist + " " + clean_up(song_name)
+        print(to_download)
+        get_mp3(to_download)
+    print ('Finsihed downloading all' + str(num) + ' songs')
 
 def get_mp3(artist_and_song_name):
     ids = get_tracks(artist_and_song_name)
@@ -59,5 +64,5 @@ def download_link(url):
         ydl.download([url])
 
 
-
+get_charts_top(5)
 
