@@ -40,6 +40,7 @@ def get_charts_top(num=10):
     print ('Finsihed downloading all' + str(num) + ' songs')
 
 def get_mp3(artist_and_song_name):
+    artist_and_song_name = clean_up(artist_and_song_name)
     ids = get_tracks(artist_and_song_name)
     api_response = call_pleer_api(ids[0])
     download_url = str(api_response['track_link'])
@@ -64,5 +65,4 @@ def download_link(url):
         ydl.download([url])
 
 
-get_charts_top(5)
 
