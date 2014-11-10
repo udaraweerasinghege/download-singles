@@ -41,7 +41,7 @@ class Application(Frame):
         self.getvid.grid(row=2, column=1, sticky=E)
 
         ##Create an area where text can be output to
-        self.text = Text(self, width=35, height=10, wrap=WORD)
+        self.text = Text(self, width=49, height=15, wrap=WORD)
         self.text.grid(row=3, column=0, columnspan=2, sticky=W)
 
         ##Creates music folder on C Drive for downloaded mp3s
@@ -84,7 +84,7 @@ class Application(Frame):
 ##Create and format GUI Window
 root = Tk()
 root.title("Download Songs")
-root.geometry("285x210")
+root.geometry("400x300")
 root.resizable(width=FALSE, height=FALSE)
 
 app = Application(root)
