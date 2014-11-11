@@ -25,7 +25,7 @@ def download_file(url, local_filename):
             if chunk:  # filter out keep-alive new chunks
                 f.write(chunk)
                 f.flush()
-    print('Finished downloading file\n')
+    print('Finished downloading file')
 
 
 def get_tracks(search_string):
