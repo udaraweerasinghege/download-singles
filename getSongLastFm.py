@@ -28,20 +28,20 @@ def get_song(artist, num_of_songs = 10):
     data = response.json()
     try:
         track_list = data['toptracks']['track']
+        for track in track_list:
+            song = track['name']
+            song_dl = (artist + ' '+ song)
+            try:
+                get_mp3(song_dl)
+                print("Downloaded: {}\n".format(song))
+                time.sleep(1)
+            except:
+                print("Could not find song: {}\n".format(song))
+                num_of_songs -= 1
+        print('Successfully downloaded ' + str(num_of_songs) + ' songs!')
     except:
         print("Artist {} not found".format(artist))
-    for track in track_list:
-        song = track['name']
-        song_dl = (artist + ' '+ song)
-        try:
-            get_mp3(song_dl)
-            print("Downloaded: {}\n".format(song))
-            time.sleep(1)
-        except:
-            print("Could not find song: {}\n".format(song))
-            num_of_songs -= 1
 
-    print('Successfully downloaded ' + str(num_of_songs) + ' songs!')
 
 def get_charts_top(num=10):
     response = requests.get("http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&limit={}&\
