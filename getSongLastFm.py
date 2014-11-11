@@ -26,8 +26,10 @@ def get_song(artist, num_of_songs = 10):
     response = requests.get('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist={0}\
     &autocorrect=1&limit={1}&api_key=5b905641511ae41eee7001a79e88775f&format=json'.format(artist,str(num_of_songs)))
     data = response.json()
-
-    track_list = data['toptracks']['track']
+    try:
+        track_list = data['toptracks']['track']
+    except:
+        print("Artist {} not found".format(artist))
     for track in track_list:
         song = track['name']
         song_dl = (artist + ' '+ song)
