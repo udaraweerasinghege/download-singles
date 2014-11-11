@@ -9,29 +9,39 @@ import time
 from pleer_caler import *
 
 API_KEY = '5b905641511ae41eee7001a79e88775f'
-def clean_up(s):
-    punctuation = """!"'`@$%^&_-+={}|\\/,;:.-?)([]<>*#\n\t\r"""
-    s = s.strip(punctuation)
-    if '-' in s:
-        return s[:s.index('-')]
-    if '/' in s:
-        s = s[:s.index('/')]
-    if '\\' in s:
-        return s[:s.index('\\')]
 
+def clean_up(song):
+    punctuation = """!"'`@$%^&_-+={}|\\/,;:.-?)([]<>*#\n\t\r"""
+    song = song.strip(punctuation)
+    if '-' in song:
+        return song[:song.index('-')]
+    if '/' in song:
+        return song[:song.index('/')]
+    if '\\' in song:
+        return song[:song.index('\\')]
+
+    return song
 
 def get_song(artist, num_of_songs = 10):
     response = requests.get('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist={0}\
     &autocorrect=1&limit={1}&api_key=5b905641511ae41eee7001a79e88775f&format=json'.format(artist,str(num_of_songs)))
     data = response.json()
+    try:
+        track_list = data['toptracks']['track']
+        for track in track_list:
+            song = track['name']
+            song_dl = (artist + ' '+ song)
+            try:
+                get_mp3(song_dl)
+                print("Downloaded: {}\n".format(song))
+                time.sleep(1)
+            except:
+                print("Could not find song: {}\n".format(song))
+                num_of_songs -= 1
+        print('Successfully downloaded ' + str(num_of_songs) + ' songs!')
+    except:
+        print("Artist {} not found".format(artist))
 
-    track_list = data['toptracks']['track']
-    for track in track_list:
-        song =(track['name'])
-        print(song)
-        get_mp3(artist + ' ' + song)
-        time.sleep(1)
-    print('Finished downloading all ' + str(num_of_songs) + ' songs!')
 
 def get_charts_top(num=10):
     response = requests.get("http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&limit={}&\
@@ -41,14 +51,21 @@ def get_charts_top(num=10):
     for song in songs:
         song_name = song['name']
         artist = song['artist']['name']
-        to_download = artist + " " (song_name)
-        print(to_download)
-        get_mp3(to_download)
-        time.sleep(1)
-    print('Finished downloading all' + str(num) + ' songs')
+        to_download = artist + " " + song_name
+        try:
+            get_mp3(to_download)
+            print("Downloaded: {0} by {1}\n".format(song_name, artist))
+            time.sleep(1)
+        except:
+            print("Could not find the song: {}\n".format(song_name))
+            num -= 1
+
+    print('Finished downloading all ' + str(num) + ' songs')
+
 
 def get_mp3(artist_and_song_name):
-    ids = get_tracks(clean_up(artist_and_song_name))
+    artist_and_song_name = clean_up(artist_and_song_name)
+    ids = get_tracks(artist_and_song_name)
     api_response = call_pleer_api(ids[0])
     download_url = str(api_response['track_link'])
     file_name = artist_and_song_name + ".mp3"
@@ -70,6 +87,3 @@ def download_link(url):
     ydl_opts = {}
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
-
-
-

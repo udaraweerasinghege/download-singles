@@ -37,7 +37,7 @@ class Application(Frame):
         self.topten.grid(row=2, column=1, sticky=W)
 
         ##Creates button linked to get_music_vid
-        self.getvid = Button(self, text="Music Video", command= lambda: self.download_video(2))
+        self.getvid = Button(self, text="Music Video", command=lambda: self.download_video(2))
         self.getvid.grid(row=2, column=1, sticky=E)
 
         ##Create an area where text can be output to
