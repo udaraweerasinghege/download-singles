@@ -13,6 +13,12 @@ API_KEY = '5b905641511ae41eee7001a79e88775f'
 def clean_up(song):
     punctuation = """!"'`@$%^&_-+={}|\\/,;:.-?)([]<>*#\n\t\r"""
     song = song.strip(punctuation)
+    if song.upper() == 'JAYZ':
+        return 'Jay-Z'
+    if song.upper() == 'KE$HA':
+        return 'ke$ha'
+    if song.upper() == '3OH!3':
+        return '3oh!3'
     if '-' in song:
         return song[:song.index('-')]
     if '/' in song:
@@ -20,9 +26,13 @@ def clean_up(song):
     if '\\' in song:
         return song[:song.index('\\')]
 
+
     return song
 
-def get_song(artist, num_of_songs = 10):
+def get_song(artist, num_of_songs = 5):
+    if not(isinstance(num_of_songs, int)):
+        print("Invalid number of songs, defaulted to five")
+        num_of_songs = 5
     response = requests.get('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist={0}\
     &autocorrect=1&limit={1}&api_key=5b905641511ae41eee7001a79e88775f&format=json'.format(artist,str(num_of_songs)))
     data = response.json()
@@ -43,7 +53,10 @@ def get_song(artist, num_of_songs = 10):
         print("Artist {} not found".format(artist))
 
 
-def get_charts_top(num=10):
+def get_charts_top(num=5):
+    if not(isinstance(num, int)):
+        print("Invalid number of songs, defaulted to five")
+        num_of_songs = 5
     response = requests.get("http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&limit={}&\
     api_key=5b905641511ae41eee7001a79e88775f&format=json".format(str(num)))
     data = response.json()
