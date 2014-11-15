@@ -1,5 +1,6 @@
 __author__ = 'Udara'
 __author__ = 'Pavitheran'
+from subprocess import call
 import requests
 import json
 from bs4 import BeautifulSoup
@@ -86,12 +87,14 @@ def get_mp3(artist_and_song_name):
 
 
 def get_music_vid(artist_and_song):
+
     source_code = requests.get('http://www.youtube.com/results?search_query=' + artist_and_song)
     plain = source_code.text
     soup = BeautifulSoup(plain)
     links = soup.find_all('a', {'class': 'yt-uix-tile-link yt-ui-ellipsis yt-ui-ellipsis-2 yt-uix-sessionlink\
        spf-link '})
-    href = "https://www.youtube.com" + links[0].get('href')
+    href = "https://www.youtube.com" + links[1].get('href')
+    print(href)
     download_link(href)
     print('Finished downloading the music video!')
 
@@ -100,5 +103,4 @@ def download_link(url):
     ydl_opts = {}
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
-
 
