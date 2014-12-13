@@ -9,7 +9,7 @@ import time
 #from download_mp3 import *
 from pleer_caler import *
 
-API_KEY = '5b905641511ae41eee7001a79e88775f'
+API_KEY = keys[0]
 
 def clean_up(song):
     punctuation = """!"'`@$%^&_-+={}|\\/,;:.-?)([]<>*#\n\t\r"""
