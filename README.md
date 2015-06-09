@@ -1,5 +1,6 @@
 download-singles
 ================
+#### Only for WINDOWS
 Instructions :  
 - Run song_GUI.exe:    
 - To download a single song         
